@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(161, 219, 238);
+        }
+        .header {
+            background-color: rgb(201, 223, 242);
+            padding: 20px;
+            text-align: center;
+            font-family:'Times New Roman';
+        }
+    </style>
+
+    <title> Books</title>  
+    <script type="text/javascript" src="/static/main.js"></script>  
+    <link href="/static/main.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Книжный дневник</h1>
+        </div>
+        <h1> Список книг</h1>
+        
+        <form>
+            <div>
+                <input type="text" name="name" id="name"
+                <label for="name">Название</label>
+            </div>
+                <input type="text" name="author" id="author"
+                <label for="name">Автор</label>
+                <div>
+                    <button onClick="createBook()">
+                        Добавить
+                    </button>
+                </div>
+        </form>
+        <ul>
+            {% for book in books_list %}
+            <li>
+                <div>
+                    <div>
+                        <p>
+                            <em>{{ book['name']}}</em>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <em>{{ book['author']}}</em>
+                        </p>
+                    </div>
+                    <input value="{{book['id']}}" onChange='updateBook(this)' name='read' type="checkbox" {% if book.read %} checked {% endif %}
+                   <label for="'read">Прочитана</label>
+                </div>
+            </li>
+            {% endfor%}
+        </ul>
+    </body>
+</html>
